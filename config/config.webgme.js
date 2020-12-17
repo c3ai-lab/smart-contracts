@@ -27,6 +27,6 @@ config.requirejsPaths = {
 };
 
 
-config.mongo.uri = 'mongodb://127.0.0.1:27017/smartcontracts';
+config.mongo.uri = 'mongodb://mongo:27017/smartcontracts';
 validateConfig(config);
 module.exports = config;
