@@ -71,7 +71,11 @@ define(['q'], function (Q) {
                         case 'TimedTransition':
                             _basicModel2TimedTransitionModel(core, children[i], path2Name, childModel);
                             model.timedTrans.push(childModel);
-                        break;
+                            break;
+                        case 'LinkToContract':
+                            _basicModel2TimedTransitionModel(core, children[i], path2Name, childModel);
+                            model.timedTrans.push(childModel);
+                            break;
                         case 'InitialState':
                             model.initial = childModel.name;
                             break;

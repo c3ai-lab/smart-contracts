@@ -120,9 +120,13 @@ define([
         // Store the current one as previous for next iteration.
         this.prevMetaTypeName = this.metaTypeName;
 
-        // If state is InitialState then, the border color is red
+        // If state is InitialState then, the border color is blue
         if (this.metaTypeName === 'InitialState') {
-            this.skinParts.$svg.find('circle').css('stroke', 'red');
+            this.skinParts.$svg.find('circle').css('stroke', 'blue');
+        }
+        // If state is State then, the border color is green
+        if (this.metaTypeName === 'State') {
+        this.skinParts.$svg.find('circle').css('stroke', 'green');
         }
     };
 

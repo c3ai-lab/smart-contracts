@@ -137,6 +137,7 @@ define([
             },
             segmentedDocument = {composition: [], segments: {}, errors: []};
 
+        //Configure here code generator template modules and add new files 
         self._getContractModel(nodeId)
             .then(function (model_) {
                 var i,
