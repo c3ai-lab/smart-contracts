@@ -170,7 +170,7 @@ define([
                 //addSegment('plugins', model.path, model, true);
                 //addSegment('classInitializations', model.path, model, true);
                 //addSegment('userConstructors', model.path, model);
-
+                
                 for (i = 0; i < model.transitions.length; i += 1) {
                     segmentId = addSegment('singleTransitionStart', model.transitions[i].path, model.transitions[i], true);
                     segmentId += addSegment('singleTransitionArguments', model.transitions[i].path, model.transitions[i]);
@@ -185,6 +185,28 @@ define([
                     segmentId += addSegment('singleTransitionEndGuards', model.transitions[i].path, model.transitions[i], true);
                     segmentId += addSegment('singleTransitionStatements', model.transitions[i].path, model.transitions[i]);
                     segmentId += addSegment('singleTransitionStateChange', model.transitions[i].path, model.transitions[i], true);
+
+                    //parseResult = javaParser.checkForSingleFunction(
+                    //    segmentedDocument.segments[segmentId].value,
+                    //    null,
+                    //    'public',
+                    //    self._getSegmentOffset(segmentedDocument, segmentId));
+                    //if (parseResult) {
+                    //    segmentedDocument.errors.push(parseResult);
+                    //}
+                }
+                for (i = 0; i < model.LinkToContract.length; i += 1) {
+                    segmentId = addSegment('singleTransitionStart', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionArguments', model.LinkToContract[i].path, model.LinkToContract[i]);
+                    segmentId += addSegment('singleTransitionStartEnd', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionReturn', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionOutput', model.LinkToContract[i].path, model.LinkToContract[i]);
+                    segmentId += addSegment('singleTransitionRequireState', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionRequireGuards', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionGuards', model.LinkToContract[i].path, model.LinkToContract[i]);
+                    segmentId += addSegment('singleTransitionEndGuards', model.LinkToContract[i].path, model.LinkToContract[i], true);
+                    segmentId += addSegment('singleTransitionStatements', model.LinkToContract[i].path, model.LinkToContract[i]);
+                    segmentId += addSegment('singleTransitionStateChange', model.LinkToContract[i].path, model.LinkToContract[i], true);
 
                     //parseResult = javaParser.checkForSingleFunction(
                     //    segmentedDocument.segments[segmentId].value,
