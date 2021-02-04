@@ -1,0 +1,6 @@
+  
+  //Link function
+  bytes memory function2call = abi.encodePacked(keccak256("Receiver()"));
+  bool feedback = false;
+  bytes memory MemFeedback;
+  (feedback,MemFeedback) = Address.call(function2call);      

@@ -12,7 +12,7 @@ function <%- transitions[i].name %> (<%- transitions[i].input %>) public
 }
 <% } %>
 //Links to Contracts <%for(var i = 0;i < LinkToContract.length; i += 1) {%>
-  function <%- LinkToContract[i].name %> (<%- LinkToContract[i].input %>) public 
+  function <%- LinkToContract[i].name %> (address Address) public 
   <%if (LinkToContract[i].tags != '') {%> <%- LinkToContract[i].tags %> <% } %> <%if (LinkToContract[i].output != '') {%> returns (<%- LinkToContract[i].output %>) <% } %>
   {
       require(state == States.<%- LinkToContract[i].src %>);
@@ -20,8 +20,11 @@ function <%- transitions[i].name %> (<%- transitions[i].input %>) public
       require(<%- LinkToContract[i].guards %>); <% } %>  <%if (LinkToContract[i].statements != '') {%>
       //Actions
       <%- LinkToContract[i].statements %> <% } %>  <%if (LinkToContract[i].src != LinkToContract[i].dst) {%>
-      //State change
-      state = States.<%- LinkToContract[i].dst %>; <% } %>
+      bytes memory function2call = abi.encodePacked(keccak256("Receiver()"));
+      bool feedback = false;
+      bytes memory MemFeedback;
+      (feedback,MemFeedback) = Address.call(function2call);     
+      <% } %>
   }
   <% } %>
   

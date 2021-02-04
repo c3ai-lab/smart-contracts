@@ -4,7 +4,6 @@ enum States {
   <%-states[i].name%><%if (i < states.length-1) {%>,<% } %> <% } %>
 }
 States private state = States.<%- initial %>;
-//Insert variable definitions here
 
 //Standard function - Get actual state
 function showState() public view returns (string memory){
@@ -16,3 +15,5 @@ function showState() public view returns (string memory){
   }<%if (i < states.length-1) {%><% } %> <% } %>
 return "Stateless";
 }
+
+//Insert variable definitions here
