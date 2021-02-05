@@ -39,6 +39,15 @@
       "writeAccessRequired": true
     },
     {
+      "name": "LinkToContract",
+      "displayName": "Link between two contracts",
+      "description": "Please specify which contracts should be linked.",
+      "value": false,
+      "valueType": "boolean",
+      "readOnly": false,
+      "writeAccessRequired": true
+    },
+    {
       "name": "accessControl",
       "displayName": "Access Control",
       "description": "Please specify whether you would like to add access control.",

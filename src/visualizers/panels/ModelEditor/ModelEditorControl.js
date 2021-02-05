@@ -1348,154 +1348,153 @@ define(['js/logger',
         return false;
     };
 
-    // ModelEditorControl.prototype.getConnectedComponentTypeFromConnectorEnd = function (objDesc, includeConns) {
-    //     // This also includes CompoundTypes
-    //     var self = this,
-    //         connectorEndNode = this._client.getNode(objDesc.id),
-    //         sources = connectorEndNode.getCollectionPaths('src'),
-    //         result = [];
-    //
-    //     sources.forEach(function (connId) {
-    //         var connectionNode = self._client.getNode(connId),
-    //             transitionId,
-    //             portNode,
-    //             componentTypeNode;
-    //
-    //         if (connectionNode && self.isOfMetaTypeName(connectionNode.getMetaTypeId(), 'Connection')) {
-    //             transitionId = connectionNode.getPointerId('dst');
-    //             portNode = transitionId ? self._client.getNode(transitionId) : null;
-    //             if (portNode &&
-    //                 self.isOfMetaTypeName(portNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
-    //
-    //                 componentTypeNode = self._client.getNode(portNode.getParentId());
-    //                 if (componentTypeNode &&
-    //                         // loosen this constraint s.t. moving of nodes includes the Conns
-    //                     (componentTypeNode.getParentId() === self.currentNodeInfo.id || includeConns) &&
-    //                     self.isOfMetaTypeName(componentTypeNode.getMetaTypeId(), ['ComponentType', 'CompoundType'])) {
-    //
-    //                     if (includeConns) {
-    //                         result[componentTypeNode.getId()] = connectionNode.getId();
-    //                     } else {
-    //                         result.push(componentTypeNode.getId());
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     });
-    //
-    //     return result;
-    // };
+    ModelEditorControl.prototype.getConnectedComponentTypeFromConnectorEnd = function (objDesc, includeConns) {
+        // This also includes CompoundTypes
+        var self = this,
+            connectorEndNode = this._client.getNode(objDesc.id),
+            sources = connectorEndNode.getCollectionPaths('src'),
+            result = [];
+            sources.forEach(function (connId) {
+            var connectionNode = self._client.getNode(connId),
+                transitionId,
+                portNode,
+                componentTypeNode;
+    
+            if (connectionNode && self.isOfMetaTypeName(connectionNode.getMetaTypeId(), 'Connection')) {
+                transitionId = connectionNode.getPointerId('dst');
+                portNode = transitionId ? self._client.getNode(transitionId) : null;
+                if (portNode &&
+                    self.isOfMetaTypeName(portNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
+    
+                    componentTypeNode = self._client.getNode(portNode.getParentId());
+                    if (componentTypeNode &&
+                             // loosen this constraint s.t. moving of nodes includes the Conns
+                        (componentTypeNode.getParentId() === self.currentNodeInfo.id || includeConns) &&
+                        self.isOfMetaTypeName(componentTypeNode.getMetaTypeId(), ['ComponentType', 'CompoundType'])) {
+    
+                        if (includeConns) {
+                            result[componentTypeNode.getId()] = connectionNode.getId();
+                        } else {
+                            result.push(componentTypeNode.getId());
+                        }
+                    }
+                }
+            }
+        });
+    
+        return result;
+    };
 
-    // ModelEditorControl.prototype.getConnectedConnectorEndsFromComponentType = function (objDesc) {
-    //     var self = this,
-    //         componentTypeNode = this._client.getNode(objDesc.id),
-    //         childrenIds = componentTypeNode.getChildrenIds(),
-    //         result = [];
-    //
-    //     childrenIds.forEach(function (enfTransId) {
-    //         var enfTransNode = self._client.getNode(enfTransId);
-    //         if (enfTransNode) {
-    //             if (GMEConcepts.isPort(enfTransId) &&
-    //                 self.isOfMetaTypeName(enfTransNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
-    //
-    //                 enfTransNode.getCollectionPaths('dst').forEach(function (connectionId) {
-    //                     var connNode = self._client.getNode(connectionId),
-    //                         connEndNode;
-    //
-    //                     if (connNode &&
-    //                         connNode.getParentId() === self.currentNodeInfo.id &&
-    //                         connNode.getPointerId('src')) {
-    //
-    //                         connEndNode = self._client.getNode(connNode.getPointerId('src'));
-    //                         if (self.isOfMetaTypeName(connEndNode.getMetaTypeId(), 'ConnectorEnd')) {
-    //                             result.push(connEndNode.getId());
-    //                         }
-    //
-    //                     } else {
-    //                         self.logger.warn('connection not available', connectionId);
-    //                     }
-    //                 });
-    //             }
-    //         } else {
-    //             self.logger.warn('Child not available', enfTransId);
-    //         }
-    //     });
-    //
-    //     return result;
-    // };
+    ModelEditorControl.prototype.getConnectedConnectorEndsFromComponentType = function (objDesc) {
+        var self = this,
+            componentTypeNode = this._client.getNode(objDesc.id),
+            childrenIds = componentTypeNode.getChildrenIds(),
+            result = [];
+    
+        childrenIds.forEach(function (enfTransId) {
+            var enfTransNode = self._client.getNode(enfTransId);
+            if (enfTransNode) {
+                if (GMEConcepts.isPort(enfTransId) &&
+                    self.isOfMetaTypeName(enfTransNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
+    
+                    enfTransNode.getCollectionPaths('dst').forEach(function (connectionId) {
+                        var connNode = self._client.getNode(connectionId),
+                            connEndNode;
+    
+                        if (connNode &&
+                            connNode.getParentId() === self.currentNodeInfo.id &&
+                            connNode.getPointerId('src')) {
+    
+                            connEndNode = self._client.getNode(connNode.getPointerId('src'));
+                            if (self.isOfMetaTypeName(connEndNode.getMetaTypeId(), 'ConnectorEnd')) {
+                                 result.push(connEndNode.getId());
+                            }
+    
+                        } else {
+                            self.logger.warn('connection not available', connectionId);
+                        }
+                   });
+                }
+            } else {
+                self.logger.warn('Child not available', enfTransId);
+            }
+        });
+    
+        return result;
+    };
 
-    // ModelEditorControl.prototype.getBIPConnectorEndPosition = function (objDesc) {
-    //     var self = this,
-    //         connectorEndNode = this._client.getNode(objDesc.id),
-    //         sources = connectorEndNode.getCollectionPaths('src'),
-    //         result;
-    //
-    //     sources.forEach(function (connId) {
-    //         var connectionNode = self._client.getNode(connId),
-    //             decorator,
-    //             transitionId,
-    //             portNode,
-    //             componentTypeItemId,
-    //             componentTypeNode;
-    //
-    //         if (connectionNode && self.isOfMetaTypeName(connectionNode.getMetaTypeId(), 'Connection')) {
-    //             transitionId = connectionNode.getPointerId('dst');
-    //             portNode = transitionId ? self._client.getNode(transitionId) : null;
-    //             if (portNode &&
-    //                 self.isOfMetaTypeName(portNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
-    //
-    //                 componentTypeNode = self._client.getNode(portNode.getParentId());
-    //                 if (componentTypeNode &&
-    //                     componentTypeNode.getParentId() === self.currentNodeInfo.id &&
-    //                     self.isOfMetaTypeName(componentTypeNode.getMetaTypeId(), ['ComponentType', 'CompoundType'])) {
-    //
-    //                     componentTypeItemId = self._GMEID2ComponentID[componentTypeNode.getId()] &&
-    //                         self._GMEID2ComponentID[componentTypeNode.getId()][0];
-    //
-    //                     decorator = componentTypeItemId && self.designerCanvas.items[componentTypeItemId]
-    //                             ._decoratorInstance;
-    //
-    //                     if (decorator && typeof decorator.getConnectorEndPosition === 'function') {
-    //                         result = decorator.getConnectorEndPosition(transitionId, connectorEndNode.getId());
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     });
-    //
-    //     return result;
-    // };
+     ModelEditorControl.prototype.getBIPConnectorEndPosition = function (objDesc) {
+        var self = this,
+            connectorEndNode = this._client.getNode(objDesc.id),
+            sources = connectorEndNode.getCollectionPaths('src'),
+            result;
+    
+        sources.forEach(function (connId) {
+            var connectionNode = self._client.getNode(connId),
+                decorator,
+                transitionId,
+                portNode,
+                componentTypeItemId,
+                componentTypeNode;
+    
+            if (connectionNode && self.isOfMetaTypeName(connectionNode.getMetaTypeId(), 'Connection')) {
+                transitionId = connectionNode.getPointerId('dst');
+                portNode = transitionId ? self._client.getNode(transitionId) : null;
+                if (portNode &&
+                    self.isOfMetaTypeName(portNode.getMetaTypeId(), ['EnforceableTransition', 'ExportPort'])) {
+    
+                    componentTypeNode = self._client.getNode(portNode.getParentId());
+                    if (componentTypeNode &&
+                        componentTypeNode.getParentId() === self.currentNodeInfo.id &&
+                        self.isOfMetaTypeName(componentTypeNode.getMetaTypeId(), ['ComponentType', 'CompoundType'])) {
+    
+                        componentTypeItemId = self._GMEID2ComponentID[componentTypeNode.getId()] &&
+                            self._GMEID2ComponentID[componentTypeNode.getId()][0];
+    
+                        decorator = componentTypeItemId && self.designerCanvas.items[componentTypeItemId]
+                                ._decoratorInstance;
+    
+                        if (decorator && typeof decorator.getConnectorEndPosition === 'function') {
+                            result = decorator.getConnectorEndPosition(transitionId, connectorEndNode.getId());
+                        }
+                    }
+                }
+            }
+        });
+    
+        return result;
+    };
 
-    // ModelEditorControl.prototype.getInferredConnections = function (gmeIDs) {
-    //     var self = this,
-    //         currentNode = self._client.getNode(this.currentNodeInfo.id),
-    //         connIds = [];
-    //     if (currentNode &&
-    //         self.isOfMetaTypeName(currentNode.getMetaTypeId(), ['Project', 'CompoundType']) &&
-    //         gmeIDs.length >= 2) {
-    //
-    //         self.logger.debug('More than two selected objects will check for inferred Connection-types');
-    //         gmeIDs.forEach(function (id) {
-    //             var nodeObj = self._client.getNode(id),
-    //                 res;
-    //             // First get all selected "ConnectorEnd"-s
-    //             if (nodeObj && self.isOfMetaTypeName(nodeObj.getMetaTypeId(), 'ConnectorEnd')) {
-    //                 res = self.getConnectedComponentTypeFromConnectorEnd({id: id}, true);
-    //                 self.logger.debug('ConnectorEnd is connected via', res);
-    //                 Object.keys(res).forEach(function (componentId) {
-    //                     if (gmeIDs.indexOf(componentId) > -1 && connIds.indexOf(res[componentId]) === -1) {
-    //                         connIds.push(res[componentId]);
-    //                     }
-    //                 });
-    //             }
-    //         });
-    //
-    //         self.logger.debug('Adding inferred Connections', connIds);
-    //
-    //     }
-    //
-    //     return connIds;
-    // };
+    ModelEditorControl.prototype.getInferredConnections = function (gmeIDs) {
+        var self = this,
+            currentNode = self._client.getNode(this.currentNodeInfo.id),
+            connIds = [];
+        if (currentNode &&
+            self.isOfMetaTypeName(currentNode.getMetaTypeId(), ['Project', 'CompoundType']) &&
+            gmeIDs.length >= 2) {
+    
+            self.logger.debug('More than two selected objects will check for inferred Connection-types');
+            gmeIDs.forEach(function (id) {
+                var nodeObj = self._client.getNode(id),
+                    res;
+                // First get all selected "ConnectorEnd"-s
+                if (nodeObj && self.isOfMetaTypeName(nodeObj.getMetaTypeId(), 'ConnectorEnd')) {
+                    res = self.getConnectedComponentTypeFromConnectorEnd({id: id}, true);
+                    self.logger.debug('ConnectorEnd is connected via', res);
+                    Object.keys(res).forEach(function (componentId) {
+                        if (gmeIDs.indexOf(componentId) > -1 && connIds.indexOf(res[componentId]) === -1) {
+                            connIds.push(res[componentId]);
+                        }
+                    });
+                }
+            });
+    
+            self.logger.debug('Adding inferred Connections', connIds);
+    
+        }
+    
+        return connIds;
+    };
 
     ModelEditorControl.getDefaultConfig = function () {
         return {

@@ -4,4 +4,14 @@
     <%-states[i].name%><%if (i < states.length-1) {%>,<% } %> <% } %>
   }
   States private state = States.<%- initial %>;
-  //Insert variable definitions
+  
+  //Standard function - Get actual state
+  function showState() public view returns (string memory){
+    if(state == States.<%- initial %>){
+      return "<%- initial %>";
+    }<%for(var i = 0; i < states.length; i += 1) {%>
+    else if (state == States.<%-states[i].name%>){
+      return "<%-states[i].name%>";
+    }<%if (i < states.length-1) {%><% } %> <% } %>
+  return "Stateless";
+  }

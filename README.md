@@ -15,19 +15,6 @@ git clone https://github.com/FSolidM/smart-contracts.git
 ```
 This makes the 'project root' for the git repo `/home/$USER/smart-contracts`.
 
-## Docker local deployment
-
-You need to have docker installed and running the docker daemon.
-
-CD into project repo and run:
-```
-docker-compose up
-```
-
-then visit https://localhost:8888
-
-
-## Deprecated way
 Install packages with npm in the project root (`smart-contracts`):
 ```
 cd /home/$USER/smart-contracts

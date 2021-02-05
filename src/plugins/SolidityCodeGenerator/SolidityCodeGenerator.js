@@ -52,7 +52,7 @@ define([
     // Prototypical inheritance from PluginBase.
     SolidityCodeGenerator.prototype = Object.create(PluginBase.prototype);
     SolidityCodeGenerator.prototype.constructor = SolidityCodeGenerator;
-
+    
     /**
      * Main function for the plugin to execute. This will perform the execution.
      * Notes:
@@ -201,6 +201,7 @@ define([
             noInitialState = true;
             node = nodes[type];
             name = self.core.getAttribute(node, 'name');
+            //Checks whether the conctract has an unique name
             if (contractNames.hasOwnProperty(name)) {
                 nameAndViolations.violations.push({
                     node: node,
@@ -217,6 +218,7 @@ define([
                 }
                 nameAndViolations = SolidityCodeGenerator.prototype.hasChildViolations.call(self, child, childName, nameAndViolations);
             }
+            //Checks whether the conctract has an inital State
             if (noInitialState) {
                 nameAndViolations.violations.push({
                     node: node,
