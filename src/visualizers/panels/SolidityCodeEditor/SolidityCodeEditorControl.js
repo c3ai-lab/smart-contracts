@@ -164,9 +164,9 @@ define([
                 //addSegment('userImports', model.path, model);
                 //addSegment('portsAnnotations', model.path, model, true);
                 addSegment('classStart', model.path, model, true);
-                addSegment('variables', model.path, model, true);
+                addSegment('variables', model.path, model);
                 addSegment('states', model.path, model, true);
-                addSegment('functions', model.path, model, true);
+                addSegment('functions', model.path, model);
                 addSegment('userDefinitions', model.path, model);
                 //addSegment('plugins', model.path, model, true);
                 //addSegment('classInitializations', model.path, model, true);
