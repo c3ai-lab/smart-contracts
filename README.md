@@ -50,3 +50,5 @@ After the webgme server is up and there are no error messages in the console, op
 
 Click `Create New…` to create a new project.
 After entering a project name of your choice, import the seed `Linked_SC` to start working on smart contracts!
+
+To deploy a created contract you can use [Remix](https://remix.ethereum.org/) for testing.
