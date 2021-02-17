@@ -68,10 +68,10 @@ In the Composition View is it possible to place a contract per drag and drop or 
 The Meta View povides the basic data types and relations between the created elements. Via the meta model is it possible to add or delete data types and to define the attributes and properties of the elements. If you want to add, modify a data type you have to do it in the meta model. 
 
 ## FSM Editor
-The FSM Editor will be used to design a fenite state machine inside a contract. Here can you add predefined states like the "Initial State" and "State". Tranisition between the states will be drawn by clicking on the states decorators and connect them. 
+The FSM Editor will be used to design a fenite state machine inside a contract. Here can you add predefined states like the "Initial State" and "State". Tranisitions between the states will be drawn by clicking on the states decorators and connect them. 
 
 ## The Solidity Code Generator
-The Solidity Code Generator generates automatically the solidity code of the depicted fenite state machine. The generated code is a scelett of the state machine and can be completed with own functions or variables. 
+The Solidity Code Generator generates automatically the solidity code of the depicted fenite state machine. The generated code is a skeleton of the state machine and can be completed with own functions or variables. 
 
 ## Generating solidity files
 On the top left corner of the application can you find a play button. You can open the drop down menu and execute the AddSecurityPatterns or the SolidityCodeGenerator. The security pattern will check the state machine for known vulnerabilites and the solidity code generator will create the .sol files which you need if you want to deploy you contract.
