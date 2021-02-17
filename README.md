@@ -64,11 +64,13 @@ On the right side is the object browser. Here can you see and manage the structu
 ## Compostition View
 In the Composition View is it possible to place a contract per drag and drop or you can also place a contract item which is a cluster of contracts. 
 
+![plot](./documentation/composition_view.png)
+
 ## Meta View
 The Meta View povides the basic data types and relations between the created elements. Via the meta model is it possible to add or delete data types and to define the attributes and properties of the elements. If you want to add, modify a data type you have to do it in the meta model. 
 
 ## FSM Editor
-The FSM Editor will be used to design a fenite state machine inside a contract. Here can you add predefined states like the "Initial State" and "State". Tranisitions between the states will be drawn by clicking on the states decorators and connect them. 
+The FSM Editor will be used to design a fenite state machine inside a contract. Here can you add predefined states like the "Initial State" and "State". Tranisitions between the states will be drawn by clicking on the states decorators and connect them. You can also link a state and a subcontract.  
 
 ## The Solidity Code Generator
 The Solidity Code Generator generates automatically the solidity code of the depicted fenite state machine. The generated code is a skeleton of the state machine and can be completed with own functions or variables. 
