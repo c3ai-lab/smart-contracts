@@ -92,7 +92,6 @@ On the top left corner of the application can you find a play button. You can op
 
 ![plot](./documentation/code_generator.png)
 
-Gernated Files
 
 ![plot](./documentation/generated_files.png)
 
