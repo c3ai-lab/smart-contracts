@@ -87,9 +87,13 @@ The Solidity Code Generator generates automatically the solidity code of the dep
 
 ![plot](./documentation/solidity_code_editor.png)
 
-## Generating solidity files
+## Solidity Code Generator
 On the top left corner of the application can you find a play button. You can open the drop down menu and execute the AddSecurityPatterns or the SolidityCodeGenerator. The security pattern will check the state machine for known vulnerabilites and the solidity code generator will create the .sol files which you need if you want to deploy you contract.
 
 ![plot](./documentation/code_generator.png)
+
+Gernated Files
+
+![plot](./documentation/generated_files.png)
 
 To deploy a created contract you can use [Remix](https://remix.ethereum.org/) for testing.
