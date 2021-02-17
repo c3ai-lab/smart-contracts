@@ -53,7 +53,7 @@ After the webgme server is up and there are no error messages in the console, op
 
 The tool has different hierachical levels for navigation and customization of the project. When you starting the tool you have to create a new project and choosing a project name. Afterwards you have to choose an existing seed. In the seed is an existing meta model which provides you basic configurations.
 
-## Create Project
+## Create a Project
 Click `Create New…` to create a new project.
 After entering a project name of your choice, import the seed `Linked_SC` to start working on smart contracts!
 
@@ -96,3 +96,8 @@ On the top left corner of the application can you find a play button. You can op
 ![plot](./documentation/generated_files.png)
 
 To deploy a created contract you can use [Remix](https://remix.ethereum.org/) for testing.
+
+## WebGME
+
+The FSolidM Tool was setup on Webgme. Understand [WebGME](https://github.com/webgme/webgme-cli) an you know how to use or modify FSolidM. The [WebGME Youtube Tutorials](https://www.youtube.com/channel/UC1cPQP4jjsXRhpXUnoPZQWg) can also be helpful.
+
