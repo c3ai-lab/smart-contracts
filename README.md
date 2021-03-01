@@ -99,5 +99,5 @@ To deploy a created contract you can use [Remix](https://remix.ethereum.org/) fo
 
 ## WebGME
 
-The FSolidM Tool was setup on Webgme. Understand [WebGME](https://github.com/webgme/webgme-cli) an you know how to use or modify FSolidM. The [WebGME Youtube Tutorials](https://www.youtube.com/channel/UC1cPQP4jjsXRhpXUnoPZQWg) can also be helpful.
+The FSolidM Tool was setup on Webgme. Understand [WebGME](https://github.com/webgme/webgme-cli) and you are able to use or modify FSolidM. The [WebGME Youtube Tutorials](https://www.youtube.com/channel/UC1cPQP4jjsXRhpXUnoPZQWg) can also be helpful.
 
